@@ -1,20 +1,55 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { View, Pressable, Text, ScrollView } from 'react-native';
+import Animated, {
+  useAnimatedStyle,
+  withTiming,
+} from 'react-native-reanimated';
 
-export default function App() {
+const CustomPressable = ({ id }: { id: string }) => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
+    <Pressable
+      onPress={() => {
+        console.log(id);
+      }}
+      style={{ width: 100, height: 100, backgroundColor: 'red' }}
+    >
+      <Text>{id}</Text>
+    </Pressable>
+  );
+};
+
+const Scroll = () => {
+  const animatedOpacity = useAnimatedStyle(() => {
+    return {
+      opacity: withTiming(1),
+    };
+  });
+
+  return (
+    <View style={{ flex: 1, gap: 10 }}>
+      <Animated.Text
+        style={[
+          { width: 100, height: 100, backgroundColor: 'red' },
+          animatedOpacity,
+        ]}
+      >
+        Hello from animated text
+      </Animated.Text>
+      <ScrollView>
+        <CustomPressable id="1" />
+        <CustomPressable id="2" />
+        <CustomPressable id="3" />
+        <CustomPressable id="4" />
+        <CustomPressable id="5" />
+        <CustomPressable id="6" />
+        <CustomPressable id="7" />
+        <CustomPressable id="8" />
+        <CustomPressable id="9" />
+        <CustomPressable id="10" />
+        <CustomPressable id="11" />
+        <CustomPressable id="12" />
+      </ScrollView>
     </View>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default Scroll;
