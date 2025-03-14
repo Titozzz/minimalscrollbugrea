@@ -26,14 +26,13 @@ const Scroll = () => {
 
   return (
     <View style={{ flex: 1, gap: 10 }}>
-      <Animated.Text
+      <Animated.View
         style={[
           { width: 100, height: 100, backgroundColor: 'red' },
           animatedOpacity,
         ]}
       >
-        Hello from animated text
-      </Animated.Text>
+      </Animated.View>
       <ScrollView>
         <CustomPressable id="1" />
         <CustomPressable id="2" />
